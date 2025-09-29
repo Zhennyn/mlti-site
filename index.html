@@ -20,8 +20,18 @@
         /* Estilos customizados e gradiente com as cores da logo */
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #1d354f, #2a4a6f);
             color: #f0f4f8;
+            /* Gradiente animado */
+            background: linear-gradient(135deg, #1d354f, #2a4a6f, #1a2a3f);
+            background-size: 200% 200%;
+            animation: gradientAnimation 15s ease infinite;
+        }
+
+        /* Animação do Gradiente */
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         /* Efeito de vidro fosco para os cards e botões */
@@ -46,11 +56,48 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #9cc26f;
         }
+
+        /* Animação de Fade In Inicial */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-content {
+            animation: fadeIn 0.7s ease-in-out forwards;
+        }
+
+        /* Animação de Fade In da Esquerda para Direita (para os serviços) */
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .service-item {
+            opacity: 0; /* Começa invisível antes da animação */
+            will-change: opacity, transform; /* Otimização de performance */
+        }
+
+        .is-visible {
+            animation: fadeInLeft 0.6s ease-out forwards;
+        }
     </style>
 </head>
 <body class="min-h-screen w-full flex items-center justify-center p-4">
 
-    <main class="w-full max-w-3xl mx-auto space-y-8">
+    <main class="w-full max-w-3xl mx-auto space-y-8 fade-in-content">
         <!-- Cabeçalho com Foto e Nome -->
         <header class="flex flex-col items-center text-center space-y-4">
             <img src="Logo.png" alt="Logo ML TI" class="w-32 h-32 rounded-full border-4 border-[#b3e582] shadow-lg">
@@ -85,35 +132,35 @@
                 <div>
                     <h3 class="text-xl font-semibold text-[#b3e582] mb-3 border-b-2 border-[#b3e582]/30 pb-2">Suporte e Manutenção</h3>
                     <div class="space-y-4">
-                        <div class="glass-effect p-4 rounded-lg">
+                        <div class="glass-effect p-4 rounded-lg service-item">
                             <div class="flex justify-between items-start">
                                 <h4 class="font-bold">Suporte Técnico Remoto</h4>
                                 <p class="font-bold text-lg text-[#b3e582] whitespace-nowrap ml-4">A partir de R$ 70,00</p>
                             </div>
                             <p class="text-gray-300 mt-1">Solução de problemas via acesso remoto para agilidade.</p>
                         </div>
-                        <div class="glass-effect p-4 rounded-lg">
+                        <div class="glass-effect p-4 rounded-lg service-item">
                             <div class="flex justify-between items-start">
                                 <h4 class="font-bold">Suporte Técnico Presencial</h4>
                                 <p class="font-bold text-lg text-[#b3e582] whitespace-nowrap ml-4">A partir de R$ 70,00</p>
                             </div>
                             <p class="text-gray-300 mt-1">Visita técnica para resolver problemas complexos no local.</p>
                         </div>
-                        <div class="glass-effect p-4 rounded-lg">
+                        <div class="glass-effect p-4 rounded-lg service-item">
                             <div class="flex justify-between items-start">
                                 <h4 class="font-bold">Manutenção Preventiva</h4>
                                 <p class="font-bold text-lg text-white whitespace-nowrap ml-4">R$ 120,00</p>
                             </div>
                             <p class="text-gray-300 mt-1">Limpeza, otimização e verificação para evitar falhas futuras.</p>
                         </div>
-                        <div class="glass-effect p-4 rounded-lg">
+                        <div class="glass-effect p-4 rounded-lg service-item">
                             <div class="flex justify-between items-start">
                                 <h4 class="font-bold">Formatação e Instalação</h4>
                                 <p class="font-bold text-lg text-white whitespace-nowrap ml-4">R$ 180,00</p>
                             </div>
                             <p class="text-gray-300 mt-1">Sistema operacional e softwares essenciais instalados do zero.</p>
                         </div>
-                         <div class="glass-effect p-4 rounded-lg">
+                         <div class="glass-effect p-4 rounded-lg service-item">
                             <div class="flex justify-between items-start">
                                 <h4 class="font-bold">Upgrade de Hardware</h4>
                                 <p class="font-bold text-lg text-white whitespace-nowrap ml-4">R$ 90,00</p>
@@ -127,14 +174,14 @@
                 <div>
                     <h3 class="text-xl font-semibold text-[#b3e582] mb-3 border-b-2 border-[#b3e582]/30 pb-2">Segurança</h3>
                     <div class="space-y-4">
-                        <div class="glass-effect p-4 rounded-lg">
+                        <div class="glass-effect p-4 rounded-lg service-item">
                             <div class="flex justify-between items-start">
                                 <h4 class="font-bold">Remoção de Vírus e Malware</h4>
                                 <p class="font-bold text-lg text-white whitespace-nowrap ml-4">R$ 130,00</p>
                             </div>
                             <p class="text-gray-300 mt-1">Limpeza completa de ameaças e instalação de antivírus.</p>
                         </div>
-                        <div class="glass-effect p-4 rounded-lg">
+                        <div class="glass-effect p-4 rounded-lg service-item">
                             <div class="flex justify-between items-start">
                                 <h4 class="font-bold">Configuração de Firewall</h4>
                                 <p class="font-bold text-lg text-white whitespace-nowrap ml-4">R$ 100,00</p>
@@ -148,7 +195,7 @@
                  <div>
                     <h3 class="text-xl font-semibold text-[#b3e582] mb-3 border-b-2 border-[#b3e582]/30 pb-2">Dados</h3>
                     <div class="space-y-4">
-                        <div class="glass-effect p-4 rounded-lg">
+                        <div class="glass-effect p-4 rounded-lg service-item">
                             <div class="flex justify-between items-start">
                                 <h4 class="font-bold">Backup e Recuperação</h4>
                                 <p class="font-bold text-lg text-[#b3e582] whitespace-nowrap ml-4">A partir de R$ 150,00</p>
@@ -162,14 +209,14 @@
                 <div>
                     <h3 class="text-xl font-semibold text-[#b3e582] mb-3 border-b-2 border-[#b3e582]/30 pb-2">Desenvolvimento</h3>
                     <div class="space-y-4">
-                        <div class="glass-effect p-4 rounded-lg">
+                        <div class="glass-effect p-4 rounded-lg service-item">
                             <div class="flex justify-between items-start">
                                 <h4 class="font-bold">Desenvolvimento de Sistemas</h4>
                                 <p class="font-bold text-lg text-white whitespace-nowrap ml-4">Sob consulta</p>
                             </div>
                             <p class="text-gray-300 mt-1">Criação de software personalizado para o seu negócio.</p>
                         </div>
-                        <div class="glass-effect p-4 rounded-lg">
+                        <div class="glass-effect p-4 rounded-lg service-item">
                             <div class="flex justify-between items-start">
                                 <h4 class="font-bold">Criação de Sites</h4>
                                 <p class="font-bold text-lg text-[#b3e582] whitespace-nowrap ml-4">A partir de R$ 450,00</p>
@@ -183,7 +230,7 @@
                 <div>
                     <h3 class="text-xl font-semibold text-[#b3e582] mb-3 border-b-2 border-[#b3e582]/30 pb-2">Consultoria</h3>
                     <div class="space-y-4">
-                         <div class="glass-effect p-4 rounded-lg">
+                         <div class="glass-effect p-4 rounded-lg service-item">
                             <div class="flex justify-between items-start">
                                 <h4 class="font-bold">Consultoria Tecnológica</h4>
                                 <p class="font-bold text-lg text-[#b3e582] whitespace-nowrap ml-4">A partir de R$ 150,00</p>
@@ -201,5 +248,29 @@
         </footer>
     </main>
 
+    <script>
+        // Este script detecta quando os itens de serviço estão visíveis na tela e aplica a animação.
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Aplica a classe que ativa a animação com um pequeno atraso escalonado
+                        // para que os itens não apareçam todos de uma vez.
+                        setTimeout(() => {
+                            entry.target.classList.add('is-visible');
+                        }, index * 100);
+                        
+                        // Para de "observar" o item depois que a animação foi aplicada.
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 }); // A animação começa quando 10% do item estiver visível.
+
+            const serviceItems = document.querySelectorAll('.service-item');
+            serviceItems.forEach(item => observer.observe(item));
+        });
+    </script>
 </body>
 </html>
+
+
